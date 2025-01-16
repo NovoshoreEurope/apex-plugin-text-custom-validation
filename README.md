@@ -9,7 +9,7 @@ The repository's scope is for hosting and managing Oracle APEX plugins, enabling
 # Text custom validation
 <p>
   This plugin provides a flexible solution for customizing the validation logic of Oracle APEX items. By overriding the default validation functions, it allows you to implement custom rules, such as checking if an item value is empty or starts with a specific prefix. It also supports localization, enabling you to provide dynamic error messages in different languages. This project serves as an example of how to extend APEX's validation system to meet specific requirements, offering a seamless and customizable approach to form validation.<br/><br/>
-  click here for demo (<a href="https://vt1ua0ymgopd1jc-dbnsworkshop.adb.eu-frankfurt-1.oraclecloudapps.com/ords/r/juanantonio/plugin-arena/multi_selector_layer" target="_blank">multi selector layer</a>).
+  click here for demo (<a href="https://cmbfvezufmpaqpn-nsworkshop23.adb.eu-frankfurt-1.oraclecloudapps.com/ords/r/juanantonio/pluginhub/text-custom-validator" target="_blank">text custom validation</a>).
 </p>
 <br/>
 <p align="justify">
