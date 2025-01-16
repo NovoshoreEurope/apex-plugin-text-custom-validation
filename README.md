@@ -6,7 +6,7 @@ The repository's scope is for hosting and managing Oracle APEX plugins, enabling
 </p>
 <p align="center">Oracle Apex files for Apex projects.</p>
 
-# Multi selector layer
+# Text custom validation
 <p>
   Introducing a sophisticated and user-friendly multi-selector component, specifically designed as a plugin for Oracle APEX. This component revolutionizes the way users interact with data by enabling them to effortlessly select multiple items from a comprehensive list. With its intuitive interface, the multi-selector is seamlessly integrated into the Oracle APEX environment, enhancing the overall user experience. This plugin is a perfect blend of functionality and simplicity, catering to the needs of diverse applications within Oracle APEX. Whether it's for data filtering, report generation, or managing complex datasets, this multi-selector tool brings efficiency and precision to the forefront of user interactions.<br/><br/>
   click here for demo (<a href="https://vt1ua0ymgopd1jc-dbnsworkshop.adb.eu-frankfurt-1.oraclecloudapps.com/ords/r/juanantonio/plugin-arena/multi_selector_layer" target="_blank">multi selector layer</a>).
