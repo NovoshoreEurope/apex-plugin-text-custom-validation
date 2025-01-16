@@ -22,7 +22,7 @@
       "plugin": {
         "internalName": "TEXT_CUSTOM_VALIDATION",
         "type": "item",
-        "demo": "https://cmbfvezufmpaqpn-nsworkshop23.adb.eu-frankfurt-1.oraclecloudapps.com/ords/r/juanantonio/pluginhub/apex-plugin-text-custom-validation",
+        "demo": "https://cmbfvezufmpaqpn-nsworkshop23.adb.eu-frankfurt-1.oraclecloudapps.com/ords/r/juanantonio/pluginhub/text-custom-validator",
         "previewImage": "https://raw.githubusercontent.com/NovoshoreEurope/apex-plugin-text-custom-validation/main/src/images/demo.gif"
       }
     }
