@@ -1,0 +1,30 @@
+{
+  "name": "Text custom validation",
+  "version": "1",
+  "description": "This plugin demonstrates how to override and customize the default validation behavior of an Apex item by replacing its built-in validation functions with custom logic..",
+  "keywords": ["item", "custom", "validation"],
+  "homepage": "https://github.com/NovoshoreEurope/apex-plugin-text-custom-validation",
+  "license": "MIT",
+  "commercial": "No",
+  "author": {
+    "name": "Novoshore",
+    "email": "juan.antonio@novoshore.com",
+    "url": "https://www.novoshore.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NovoshoreEurope/apex-plugin-text-custom-validation.git"
+  },
+  "oracle": {
+    "versions": ["23.1.5","24.2"],
+    "apex": {
+      "versions": ["23.1.5","24.2"],
+      "plugin": {
+        "internalName": "TEXT_CUSTOM_VALIDATION",
+        "type": "item",
+        "demo": "https://cmbfvezufmpaqpn-nsworkshop23.adb.eu-frankfurt-1.oraclecloudapps.com/ords/r/juanantonio/pluginhub/apex-plugin-text-custom-validation",
+        "previewImage": "https://raw.githubusercontent.com/NovoshoreEurope/apex-plugin-text-custom-validation/main/src/images/demo.gif"
+      }
+    }
+  }
+}
