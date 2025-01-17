@@ -33,7 +33,7 @@ prompt APPLICATION 108 - PluginHub
 -- Application Export:
 --   Application:     108
 --   Name:            PluginHub
---   Date and Time:   15:43 Thursday January 16, 2025
+--   Date and Time:   10:40 Friday January 17, 2025
 --   Exported By:     JUANANTONIO
 --   Flashback:       0
 --   Export Type:     Component Export
@@ -63,48 +63,61 @@ wwv_flow_imp_shared.create_plugin(
 ,p_css_file_urls=>'#PLUGIN_FILES#ns.plugin.tcv#MIN#.css'
 ,p_plsql_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'PROCEDURE render_plugin (',
-'    p_item   in            apex_plugin.t_item,',
-'    p_plugin in            apex_plugin.t_plugin,',
-'    p_param  in            apex_plugin.t_item_render_param,',
-'    p_result in out nocopy apex_plugin.t_item_render_result )',
-'AS',
-'    --custom plugin attributes',
-'    l_result                                apex_plugin.t_page_item_render_result;',
-'    l_item_name                             varchar2(4000) := apex_plugin.get_input_name_for_page_item(false);',
-'    l_item_value                            varchar2(4000) := p_param.value;',
-'    --',
-'    attr_short_text                         p_item.attribute_01%TYPE := p_item.attribute_01;',
-'    attr_label                              p_item.attribute_02%TYPE := p_item.attribute_02;',
-'    --',
-'    l_html      varchar(4000);',
-'    --',
+'    p_item   IN            apex_plugin.t_item,',
+'    p_plugin IN            apex_plugin.t_plugin,',
+'    p_param  IN            apex_plugin.t_item_render_param,',
+'    p_result IN OUT NOCOPY apex_plugin.t_item_render_result',
+') AS',
+'    -- Custom plugin attributes',
+'    l_result          apex_plugin.t_page_item_render_result;',
+'    l_item_name       VARCHAR2(4000) := apex_plugin.get_input_name_for_page_item(false);',
+'    l_item_value      VARCHAR2(4000) := p_param.value;',
+'',
+'    -- Plugin-specific attributes (defined by developer in the plugin attributes)',
+'    attr_short_text   p_item.attribute_01%TYPE := p_item.attribute_01; -- Example: Short descriptive text or validation text',
+'    attr_label        p_item.attribute_02%TYPE := p_item.attribute_02; -- Label for the input field',
+'',
+'    -- Variable to store generated HTML',
+'    l_html            CLOB;',
+'',
 'BEGIN',
-'    --debug',
-'    if apex_application.g_debug then',
-'      apex_plugin_util.debug_page_item(p_plugin, p_item, p_param.value, p_param.is_readonly, p_param.is_printer_friendly);',
-'    end if;',
-'    --',
-'    l_html := ''<div class="t-Form-fieldContainer t-Form-fieldContainer--floatingLabel lto'' || p_item.id || ''_0 apex-item-wrapper apex-item-wrapper--text-field" id="'' || l_item_name || ''_CONTAINER">'';',
-'	l_html := l_html || ''<div class="t-Form-labelContainer">'';',
-'	l_html := l_html || ''<label for="'' || l_item_name || ''" id="'' || l_item_name || ''_LABEL" class="t-Form-label">'' || attr_label || ''</label>'';',
-'	l_html := l_html || ''</div>'';',
-'	l_html := l_html || ''<div class="t-Form-inputContainer">'';',
-'	l_html := l_html || ''<div class="t-Form-itemWrapper">'';',
-'	l_html := l_html || ''<input type="text" id="'' || l_item_name || ''" name="'' || l_item_name || ''" class="text_field apex-item-text" value="'' || l_item_value || ''" size="30" spellcheck="false" data-ms-editor="true"/>'';',
-'	l_html := l_html || ''</div>'';',
-'	l_html := l_html || ''<span id="'' || l_item_name || ''_error_placeholder" class="a-Form-error"/>'';',
-'	l_html := l_html || ''</div>'';',
-'    l_html := l_html || ''</div>'';',
-'    --',
+'    -- Debugging information, useful for tracking plugin behavior during development',
+'    IF apex_application.g_debug THEN',
+'        apex_plugin_util.debug_page_item(p_plugin, p_item, p_param.value, p_param.is_readonly, p_param.is_printer_friendly);',
+'    END IF;',
+'',
+'    -- Set the item''s value in APEX session state to ensure synchronization',
+'    apex_util.set_session_state(l_item_name, l_item_value);',
+'',
+'    -- Build the HTML structure for the plugin output',
+'    l_html :=',
+'          ''<div class="t-Form-fieldContainer t-Form-fieldContainer--floatingLabel lto''',
+'       || p_item.id || ''_0 apex-item-wrapper apex-item-wrapper--text-field" id="''',
+'       || l_item_name || ''_CONTAINER">''',
+'       || ''<div class="t-Form-labelContainer">''',
+'       || ''<label for="'' || l_item_name || ''" id="'' || l_item_name || ''_LABEL" class="t-Form-label">''',
+'       || attr_label || ''</label>''',
+'       || ''</div>''',
+'       || ''<div class="t-Form-inputContainer">''',
+'       || ''<div class="t-Form-itemWrapper">''',
+'       || ''<input type="text" id="'' || l_item_name || ''" name="'' || l_item_name || ''" class="text_field apex-item-text"''',
+'       || '' value="'' || l_item_value || ''" size="30" spellcheck="false" data-ms-editor="true"/>''',
+'       || ''</div>''',
+'       || ''<span id="'' || l_item_name || ''_error_placeholder" class="a-Form-error"></span>''',
+'       || ''</div>''',
+'       || ''</div>'';',
+'',
+'    -- Output the generated HTML to the page',
 '    htp.p(l_html);',
-'    -- ',
-'    apex_javascript.add_onload_code(p_code => ''textCustomValidation._initialize("''||attr_short_text||''", "''||l_item_name||''");'');',
-'    --',
-'end render_plugin;'))
+'',
+'    -- Add JavaScript to initialize client-side functionality for the plugin',
+'    apex_javascript.add_onload_code(p_code => ''textCustomValidation._initialize("'' || attr_short_text || ''", "'' || l_item_name || ''");'');',
+'',
+'END render_plugin;'))
 ,p_api_version=>2
 ,p_render_function=>'render_plugin'
 ,p_substitute_attributes=>true
-,p_version_scn=>41496329825755
+,p_version_scn=>41496464058638
 ,p_subscribe_plugin_settings=>true
 ,p_version_identifier=>'1.0'
 ,p_about_url=>'https://www.novoshore.com/'
